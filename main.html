@@ -27,14 +27,11 @@
 
               event.preventDefault();
 
-              var username = $('#input-username').val();
-              //alert('username: ' + username);
 
-              //var requri   = 'https://api.github.com/users/'+username;
 
               var username = $('#input-username').val();
 
-              $('#user-info').html("<h2>Displaying repos for " + username +"</h2>")
+              $('#user-info').html("<h2>Displaying repos for " + username +"</h2>");
 
               var url = "https://api.github.com/users/"+username+"/repos";
               $.getJSON(url + '?callback=?', function(json){
@@ -42,14 +39,13 @@
                 var html = "";
                 $('#repo-list').html("<tr><th>name</th><th>created</th><th>updated</th></tr>");
                 $.each(json, function(i, repo){
-                  //  alert(repo.name);
-                   html = html +"<tr>";
+                  html = "<tr>";
                   html = html +"<td>" + repo.name + "</td>";
                   html = html +"<td>" + repo.created_at + "</td>";
                   html = html +"<td>" + repo.updated_at + "</td>";
                   html = html +"</tr>";
+                  $('#repo-list').append(html);
                 });
-                $('#repo-list').append(html);
               });
            });
     });
